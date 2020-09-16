@@ -1,0 +1,13 @@
+- name: envoy.filters.http.wasm
+  typed_config:
+    "@type": type.googleapis.com/udpa.type.v1.TypedStruct
+    type_url: envoy.extensions.filters.http.wasm.v3.Wasm
+    value:
+      config:
+        vm_config:
+          runtime: "envoy.wasm.runtime.v8"
+          code:
+            local: { filename: "{{ .Vars.HelloWorldWasmFile }}" }
+        configuration:
+          "@type": "type.googleapis.com/google.protobuf.StringValue"
+          value: "{}"
