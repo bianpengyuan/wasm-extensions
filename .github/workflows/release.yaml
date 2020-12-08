@@ -19,7 +19,7 @@ jobs:
       - name: Download artifacts
         run: |
           COMMIT=$(git rev-list -n 1 ${{ github.ref }})
-          gsutil cp gs://istio-ecosystem/wasm-extensions/basic-auth/${COMMIT}.wasm basic-auth-${{ github.ref }}.wasm
+          gsutil cp gs://istio-ecosystem/wasm-extensions/basic-auth/${COMMIT}.wasm basic-auth.wasm
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -38,4 +38,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
           asset_path: ./basic-auth.wasm
-          asset_name: ./basic-auth-${{ github.ref }}.wasm
+          asset_name: basic-auth.wasm
+          asset_content_type: application/wasm
